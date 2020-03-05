@@ -1,11 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
+    <title> Databases</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <h1>Databases</h1>
+    <select id="selectDbs">
+   <% databases.forEach((database)=>{ -%>
+    <option><%=database.name %></option>
+    <% }) -%>
+  </select>
+   
+
+
   </body>
 </html>
