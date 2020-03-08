@@ -92,17 +92,24 @@ activate.addEventListener("change", () => {
 
   const createCol=(event)=>
   {
+    let activate = document.querySelector("#selectDbs");
+    //console.log(activate);
 
-    const databaseName = activate.value;
-    const collection = activate2.value;
-
-    const name = document.querySelector("#formCreate input").value;
+    const name = document.querySelector("#formCreate #name").value;
+    const dbName1 = document.querySelector("#formCreate #dbname").value;
+    const colname = document.querySelector("#formCreate #collectionAdd").value;
+    console.log(name);
+  
+    console.log(dbName1);
+    
   
     const query = {
-      dbName: databaseName,
-      collectionName: collection,
+      dbname: dbName1,
+      collection: colname,
       name: name
     };
+    console.log(query);
+    
 
     fetch("/databases/createCollection", {
     method: "POST",
@@ -111,6 +118,9 @@ activate.addEventListener("change", () => {
       "Content-Type": "application/json"
     },
     body: JSON.stringify(query)
+  }).then(()=>{
+      console.log("Agregado");
+      
   });
 
   };
@@ -151,6 +161,8 @@ activate.addEventListener("change", () => {
 
     const databaseName = activate.value;
     const collection = activate2.value;
+    console.log(databaseName);
+    
 
     const name = document.querySelector("#formDelete input").value;
   

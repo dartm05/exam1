@@ -27,8 +27,8 @@ router.get('/collections/:dbname', function(req, res, next) {
  router.post("/databases/addCollection", function(req, res) {
   console.log(req.body);
   const dbname= req.body.dbname;
-  const colname= req.body.colname;
-  mongo.insert(dbName, collection, req.body.name);
+  const colname= req.body.collection;
+  mongo.insert(dbname, colname, req.body.name);
   res.redirect("/databases");
 });
 
