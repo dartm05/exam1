@@ -2,17 +2,95 @@
 <html>
   <head>
     <title> Databases</title>
+
+    <%- include("./head.ejs") -%>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
     <h1>Databases</h1>
     <select id="selectDbs">
+   
    <% databases.forEach((database)=>{ -%>
-    <option><%=database.name %></option>
+   <option value=<%= database.name -%>> <%=database.name -%></option>
     <% }) -%>
   </select>
+
+
+
+<div id="target"> 
+<select name="collections" id="collection">
+<option value="">--choose a collection--</option>
+
+</select>
+</div >
+<div id="table">
+<table id="tableDetail">
+</table>
+</div>
+
+<div class="col-md-12 col-md-8">
+  <h2>Create a new collection</h2>
+ 
+   <form id="formCreate" action="/databases/addCollection" method="POST">
+    <button id="create" type="submit" class="btn-primary">Create</button>
+  </form>
+
+</div>
+  <div class="col-12 col-md-8">
+  <h2>Update register</h2>
+  <form id="formUpdate" action="/databases/update" method="POST">
+    <button class="btn btn-primary" id="butUpdate" type="submit">Update</button>
+  </form>
+  </div>
+
+<div class="col-12 col-md-8">
+<h2>Delete</h2>
+<div class="input-group">
+
+<form id="formDelete">
+  <select id="selectDbs">
    
+    <% databases.forEach((database)=>{ -%>
+    <option name="db" value=<%= database.name -%>> <%=database.name -%></option>
+     <% }) -%>
+   </select>
+
+<input class="form-control" id="collectionName" name="collection" type="text"  placeholder="collection name"/>  
+<input class="form-control" id="_id" name="_id" type="text"  placeholder="_id"/>
+<button id="deletebutt" class="btn btn-danger btn-primary" type="submit">Delete</button>
+  </form>
+    </div>
+
+</div>
 
 
+</div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="selectionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Database selected</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>You have chosen a database.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary"  data-dismiss="modal">Dismiss</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<%- include("./bootstrap.ejs") -%>
+<script src="colecciones.js"></script>
   </body>
 </html>
