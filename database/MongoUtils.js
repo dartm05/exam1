@@ -73,17 +73,23 @@ function MongoUtils() {
 };
 
 
-mu.deleteinfo= (dbName, colName, info) =>
-mu.connect().then(client => {
+mu.deleteinfo= (dbName, colName, info) =>{
+const url = `mongodb+srv://daniella:tacetmars@cluster0-bmsve.mongodb.net/test?retryWrites=true&w=majority`;
+const client = new MongoClient(url, { useUnifiedTopology: true }); // useUnifiedTopology removes a warning
+client.connect().then(client => {
  client.db(dbName).collection(colName).deleteOne({ name: info }).finally(() => client.close());
 });
+};
 
-mu.updateinfo = (dbName, collectionName, named, newname) =>
-mu.connect().then(client => {
+mu.updateinfo = (dbName, collectionName, named, newname) =>{
+const url = `mongodb+srv://daniella:tacetmars@cluster0-bmsve.mongodb.net/test?retryWrites=true&w=majority`;
+const client = new MongoClient(url, { useUnifiedTopology: true }); // useUnifiedTopology removes a warning
+client.connect().then(client => {
   client.db(dbName).collection(collectionName)
     .updateOne({ name: named }, { $set: { name: newname } })
     .finally(() => client.close());
 });
+};
 
 
 
