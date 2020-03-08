@@ -25,7 +25,6 @@ const rendercolecciones= data =>{
         opcion.textContent= dato.name;
         target.appendChild(opcion);
     });
-    createForm(data);
 }
 
 
@@ -89,11 +88,6 @@ activate.addEventListener("change", () => {
 
   const deleteform= document.getElementById("formDelete");
 
-  createform.addEventListener("submit", createCol);
-
-  updateform.addEventListener("submit", updateCol);
-
-  deleteform.addEventListener("submit", deleteCol);
 
 
   const createCol=(event)=>
@@ -119,7 +113,70 @@ activate.addEventListener("change", () => {
     body: JSON.stringify(query)
   });
 
-  }
+  };
+
+
+
+
+  const updateCol=(event)=>
+  {
+
+    const databaseName = activate.value;
+    const collection = activate2.value;
+
+    const name = document.querySelector("#formUpdate input").value;
+  
+    const query = {
+      dbName: databaseName,
+      collectionName: collection,
+      name: name
+    };
+
+    fetch("/databases/updateCollection", {
+    method: "POST",
+    headers: {
+      Accept: "application/json, text/plain, */*",
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(query)
+  });
+
+  };
+
+
+
+
+  const deleteCol=(event)=>
+  {
+
+    const databaseName = activate.value;
+    const collection = activate2.value;
+
+    const name = document.querySelector("#formDelete input").value;
+  
+    const query = {
+      dbName: databaseName,
+      collectionName: collection,
+      name: name
+    };
+
+    fetch("/databases/deleteCollection", {
+    method: "POST",
+    headers: {
+      Accept: "application/json, text/plain, */*",
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(query)
+  });
+
+  };
+
+
+  createform.addEventListener("submit", createCol);
+
+  updateform.addEventListener("submit", updateCol);
+
+  deleteform.addEventListener("submit", deleteCol);
 
 
   
